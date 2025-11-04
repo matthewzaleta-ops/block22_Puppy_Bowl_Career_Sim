@@ -54,9 +54,11 @@ async function getPlayer(playerId) {
 
 function PlayerListItem(player) {
   const $li = document.createElement("li");
+  $li.classList.add("liclass");
   $li.innerHTML = `
-  <a class= "player-name" href="#selected">${player.name}</a>
-  <img class="player-img" src="${player.imageUrl}" alt="${player.name}" />
+    <img class="player-img" src="${player.imageUrl}" alt="${player.name}" />
+    <a class= "player-name" href="#selected">${player.name}</a>
+
   `;
   $li.addEventListener("click", () => getPlayer(player.id));
   return $li;
@@ -78,16 +80,19 @@ function PlayerDetails() {
     $p.textContent = "Please select a player to learn more details.";
     return $p;
   }
-  const { name, id, breed, status, imageUrl } = selectedPlayer;
+  const { name, id, breed, status, team, imageUrl } = selectedPlayer;
 
   const $player = document.createElement("section");
   $player.classList.add("player");
   $player.innerHTML = `
-<h3>${name} #${id}</h3>
+
 <figure>
 <img class="player-profile-img" alt="${name}" src="${imageUrl}" />
 </figure>
+<p><strong>Name: </strong>${name}</p>
+<p><strong>ID: </strong>#${id}</p>
 <p><strong>Breed:</strong> ${breed}</p>
+<p><strong>Team: </strong> ${team?.name}</p>
 <p><strong>Status:</strong> ${status}</p>
 <button class="remove-btn">Remove Player</button>
 `;
@@ -145,6 +150,10 @@ function NewPlayerForm() {
   Status
   <input name="status" />
   </label>
+    <label class="newPlayerItems">
+  Team
+  <input name="status" />
+  </label>
   <label class="newPlayerItems">
   Image URL
   <input name="imageUrl" />
@@ -159,6 +168,7 @@ function NewPlayerForm() {
       name: formData.get("name"),
       breed: formData.get("breed"),
       status: formData.get("status") || "bench",
+      team: formData.get("team"),
       imageUrl: formData.get("imageUrl"),
     };
 
