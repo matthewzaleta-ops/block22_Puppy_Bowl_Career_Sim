@@ -55,7 +55,8 @@ async function getPlayer(playerId) {
 function PlayerListItem(player) {
   const $li = document.createElement("li");
   $li.innerHTML = `
-  <a href="#selected">${player.name}</a>
+  <a class= "player-name" href="#selected">${player.name}</a>
+  <img class="player-img" src="${player.imageUrl}" alt="${player.name}" />
   `;
   $li.addEventListener("click", () => getPlayer(player.id));
   return $li;
@@ -84,7 +85,7 @@ function PlayerDetails() {
   $player.innerHTML = `
 <h3>${name} #${id}</h3>
 <figure>
-<img alt="${name}" src="${imageUrl}" />
+<img class="player-profile-img" alt="${name}" src="${imageUrl}" />
 </figure>
 <p><strong>Breed:</strong> ${breed}</p>
 <p><strong>Status:</strong> ${status}</p>
@@ -130,24 +131,25 @@ const addNewPlayer = async (newPlayer) => {
 
 function NewPlayerForm() {
   const $form = document.createElement("form");
+  $form.classList.add("new-player-form");
   $form.innerHTML = `
-  <label>
+  <label class="newPlayerItems">
   Name
   <input name="name" required />
   </label>
-  <label>
+  <label class="newPlayerItems">
   Breed
   <input name="breed" required />
   </label>
-  <label>
+  <label class="newPlayerItems">
   Status
   <input name="status" />
   </label>
-  <label>
+  <label class="newPlayerItems">
   Image URL
   <input name="imageUrl" />
   </label>
-  <button>Add Player</button>
+  <button class ="remove-btn" >Add Player</button>
   `;
   $form.addEventListener("submit", async (event) => {
     event.preventDefault();

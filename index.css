@@ -15,11 +15,13 @@ main {
 }
 
 section {
-  padding: 0 1rem;
+  padding: 0, 1rem;
 }
 
-.lineup a {
+.lineup {
   color: unset;
+  flex: wrap;
+  flex-direction: column;
   text-decoration: none;
   display: block;
   width: 100%;
@@ -28,7 +30,21 @@ section {
   padding: 1ch;
 }
 
-.lineup a:hover {
+.player-name {
+  flex: wrap;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.new-player-form {
+  display: flex;
+  flex: wrap;
+  flex-direction: column;
+}
+.player-img {
+  max-inline-size: 3rem;
+}
+.lineup :hover {
   background: #eee;
 }
 
@@ -42,12 +58,25 @@ img {
   object-fit: contain;
 }
 
+.player-profile-img {
+  max-inline-size: 400px;
+}
+
 @media (width > 600px) {
   main {
     grid-template-columns: 1fr 1fr;
   }
 }
 
+.add-btn {
+  width: 10rem;
+}
+
 .remove-btn {
   width: 10rem;
+  margin: 0.5ch;
+}
+
+.newPlayerItems {
+  margin: 0.5ch;
 }
